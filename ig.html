@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya di Instagram</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ============================================
+   VARIABEL & RESET
+============================================ */
+:root {
+  /* Warna Instagram 2024 */
+  --ig-primary: #000000;
+  --ig-secondary: #262626;
+  --ig-tertiary: #8e8e8e;
+  --ig-light: #fafafa;
+  --ig-border: #dbdbdb;
+  --ig-white: #ffffff;
+  --ig-blue: #0095f6;
+  --ig-blue-hover: #1877f2;
+  --ig-pink: #ed4956;
+  --ig-purple: #c32aa3;
+  --ig-yellow: #fccc63;
+  --ig-orange: #f77737;
+  --ig-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  
+  /* Font Instagram */
+  --ig-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ig-font-logo: 'Instagram Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Spacing */
+  --ig-spacing-xs: 4px;
+  --ig-spacing-sm: 8px;
+  --ig-spacing-md: 16px;
+  --ig-spacing-lg: 24px;
+  --ig-spacing-xl: 32px;
+  
+  /* Border Radius */
+  --ig-radius-sm: 4px;
+  --ig-radius-md: 8px;
+  --ig-radius-lg: 12px;
+  --ig-radius-full: 9999px;
+  
+  /* Shadows */
+  --ig-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --ig-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --ig-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ig-font);
+  background-color: var(--ig-white);
+  color: var(--ig-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Remove Bootstrap default styles that might interfere */
+.container, .container-fluid, .row, .col {
+  padding: 0;
+  margin: 0;
+}
+
+/* ============================================
+   NAVBAR INSTAGRAM 2024
+============================================ */
+.ig-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--ig-white);
+  border-bottom: 1px solid var(--ig-border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--ig-spacing-md);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.pembungkus-nav {
+  width: 100%;
+  max-width: 975px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Instagram */
+.logo-merek {
+  font-family: var(--ig-font-logo);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ig-primary);
+  text-decoration: none;
+  background: var(--ig-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-xs);
+}
+
+.logo-merek::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: var(--ig-gradient);
+  border-radius: var(--ig-radius-md);
+}
+
+/* Kotak Pencarian */
+.kotak-pencarian {
+  width: 215px;
+  height: 36px;
+  background-color: var(--ig-light);
+  border: 1px solid var(--ig-border);
+  border-radius: var(--ig-radius-full);
+  padding: 0 var(--ig-spacing-md);
+  font-size: 14px;
+  color: var(--ig-secondary);
+  outline: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.kotak-pencarian:focus {
+  border-color: var(--ig-tertiary);
+  background-color: var(--ig-white);
+  box-shadow: 0 0 0 1px var(--ig-border);
+}
+
+.kotak-pencarian::placeholder {
+  color: var(--ig-tertiary);
+  font-weight: 300;
+}
+
+/* Ikon Navbar */
+.ikon-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-lg);
+}
+
+.ikon-nav a {
+  color: var(--ig-primary);
+  text-decoration: none;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.ikon-nav a:hover {
+  transform: scale(1.1);
+}
+
+.ikon-nav a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ikon-profil i {
+  color: var(--ig-primary);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Notifikasi badge */
+.ikon-nav a[href*="heart"]::after,
+.ikon-nav a[href*="paper-plane"]::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--ig-pink);
+  border-radius: 50%;
+  border: 2px solid var(--ig-white);
+  display: none;
+}
+
+/* ============================================
+   KONTEN UTAMA
+============================================ */
+.wadah-profil {
+  max-width: 935px;
+  margin: 90px auto 0;
+  padding: 0 var(--ig-spacing-md);
+}
+
+/* ============================================
+   KEPALA PROFIL
+============================================ */
+.kepala-profil {
+  display: flex;
+  gap: var(--ig-spacing-xl);
+  margin-bottom: var(--ig-spacing-xl);
+  padding-bottom: var(--ig-spacing-xl);
+  border-bottom: 1px solid var(--ig-border);
+}
+
+.wadah-avatar-profil {
+  flex: 0 0 150px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Avatar Profil dengan Gradien Border */
+.avatar-profil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--ig-gradient);
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatar-profil:hover {
+  transform: scale(1.02);
+}
+
+.avatar-profil img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ig-white);
+}
+
+.avatar-profil::after {
+  content: '+';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--ig-blue);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid var(--ig-white);
+}
+
+/* Info Profil */
+.info-profil {
+  flex: 1;
+}
+
+.baris-nama-pengguna {
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-md);
+  margin-bottom: var(--ig-spacing-md);
+  flex-wrap: wrap;
+}
+
+.nama-pengguna {
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--ig-primary);
+  line-height: 1;
+}
+
+/* Tombol Profil */
+.tombol-profil {
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--ig-radius-sm);
+  border: 1px solid var(--ig-border);
+  background-color: transparent;
+  color: var(--ig-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ig-spacing-xs);
+}
+
+.tombol-profil:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tombol-profil.utama {
+  background-color: var(--ig-blue);
+  color: var(--ig-white);
+  border-color: var(--ig-blue);
+}
+
+.tombol-profil.utama:hover {
+  background-color: var(--ig-blue-hover);
+  border-color: var(--ig-blue-hover);
+}
+
+.tombol-profil i {
+  font-size: 12px;
+}
+
+/* Statistik Profil */
+.statistik-profil {
+  display: flex;
+  gap: var(--ig-spacing-xl);
+  margin-bottom: var(--ig-spacing-lg);
+}
+
+.item-statistik {
+  font-size: 16px;
+  color: var(--ig-primary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.item-statistik:hover {
+  color: var(--ig-secondary);
+}
+
+.angka-statistik {
+  font-weight: 700;
+  color: var(--ig-primary);
+}
+
+/* Bio Profil */
+.bio-profil {
+  line-height: 1.5;
+}
+
+.bio-profil h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ig-primary);
+  margin-bottom: var(--ig-spacing-xs);
+}
+
+.bio-profil p {
+  font-size: 16px;
+  color: var(--ig-primary);
+  margin-bottom: var(--ig-spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-xs);
+}
+
+.bio-profil a {
+  color: var(--ig-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.bio-profil a:hover {
+  color: var(--ig-blue-hover);
+  text-decoration: underline;
+}
+
+/* ============================================
+   BAGIAN CERITA/HIGHLIGHTS
+============================================ */
+.bagian-cerita {
+  margin-bottom: var(--ig-spacing-xl);
+  padding-bottom: var(--ig-spacing-md);
+}
+
+.judul-cerita {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--ig-spacing-md);
+}
+
+.judul-cerita h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ig-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.judul-cerita a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ig-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.judul-cerita a:hover {
+  color: var(--ig-blue-hover);
+}
+
+/* Wadah Cerita */
+.wadah-cerita {
+  display: flex;
+  gap: var(--ig-spacing-lg);
+  overflow-x: auto;
+  padding: var(--ig-spacing-sm) 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.wadah-cerita::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+/* Item Cerita */
+.item-cerita {
+  flex: 0 0 auto;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.item-cerita:hover {
+  transform: translateY(-2px);
+}
+
+.avatar-cerita {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: var(--ig-gradient);
+  padding: 2px;
+  margin-bottom: var(--ig-spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-cerita img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--ig-white);
+}
+
+.nama-cerita {
+  font-size: 12px;
+  color: var(--ig-primary);
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+/* ============================================
+   TAB PROFIL
+============================================ */
+.tab-profil {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--ig-border);
+  margin-bottom: var(--ig-spacing-xl);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-xs);
+  padding: var(--ig-spacing-md) 0;
+  margin: 0 var(--ig-spacing-lg);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ig-tertiary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid transparent;
+  margin-top: -1px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab:hover {
+  color: var(--ig-primary);
+}
+
+.tab.aktif {
+  color: var(--ig-primary);
+  border-top-color: var(--ig-primary);
+}
+
+.tab i {
+  font-size: 12px;
+}
+
+/* Indikator aktif untuk tab */
+.tab.aktif::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--ig-primary);
+}
+
+/* ============================================
+   GRID POSTINGAN
+============================================ */
+.grid-postingan {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ig-spacing-md);
+  margin-bottom: var(--ig-spacing-xl);
+}
+
+/* Item Postingan */
+.item-postingan {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--ig-radius-sm);
+  cursor: pointer;
+  background-color: var(--ig-light);
+}
+
+.item-postingan img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.item-postingan:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay Postingan */
+.overlay-postingan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.item-postingan:hover .overlay-postingan {
+  opacity: 1;
+}
+
+.statistik-postingan {
+  display: flex;
+  gap: var(--ig-spacing-xl);
+}
+
+.statistik {
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-xs);
+  color: var(--ig-white);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.statistik i {
+  font-size: 20px;
+}
+
+/* ============================================
+   INFO KONTAK MOBILE
+============================================ */
+.info-kontak-mobile {
+  display: none;
+  padding: var(--ig-spacing-lg) 0;
+  border-top: 1px solid var(--ig-border);
+  margin-top: var(--ig-spacing-lg);
+}
+
+.info-kontak-mobile h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ig-primary);
+  margin-bottom: var(--ig-spacing-md);
+}
+
+.info-kontak-mobile p {
+  font-size: 14px;
+  color: var(--ig-secondary);
+  margin-bottom: var(--ig-spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--ig-spacing-sm);
+}
+
+.info-kontak-mobile p::before {
+  content: '•';
+  color: var(--ig-tertiary);
+  font-size: 20px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+============================================ */
+
+/* Tablet (768px ke bawah) */
+@media (max-width: 768px) {
+  .wadah-profil {
+    padding: 0 var(--ig-spacing-md);
+  }
+  
+  .kepala-profil {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--ig-spacing-lg);
+  }
+  
+  .wadah-avatar-profil {
+    flex: 0 0 auto;
+  }
+  
+  .info-profil {
+    width: 100%;
+  }
+  
+  .baris-nama-pengguna {
+    justify-content: center;
+  }
+  
+  .statistik-profil {
+    justify-content: center;
+  }
+  
+  .grid-postingan {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--ig-spacing-sm);
+  }
+  
+  .tab {
+    margin: 0 var(--ig-spacing-sm);
+    font-size: 11px;
+  }
+  
+  .kotak-pencarian {
+    display: none;
+  }
+  
+  .info-kontak-mobile {
+    display: block;
+  }
+}
+
+/* Mobile (480px ke bawah) */
+@media (max-width: 480px) {
+  .wadah-profil {
+    margin-top: 60px;
+    padding: 0 var(--ig-spacing-sm);
+  }
+  
+  .ig-navbar {
+    height: 50px;
+    padding: 0 var(--ig-spacing-sm);
+  }
+  
+  .logo-merek {
+    font-size: 24px;
+  }
+  
+  .logo-merek::before {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .ikon-nav {
+    gap: var(--ig-spacing-md);
+  }
+  
+  .ikon-nav a {
+    font-size: 20px;
+  }
+  
+  .avatar-profil {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .nama-pengguna {
+    font-size: 24px;
+  }
+  
+  .tombol-profil {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+  
+  .statistik-profil {
+    gap: var(--ig-spacing-lg);
+  }
+  
+  .item-statistik {
+    font-size: 14px;
+  }
+  
+  .grid-postingan {
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--ig-spacing-xs);
+  }
+  
+  .tab-profil {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 var(--ig-spacing-sm);
+  }
+  
+  .tab {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: var(--ig-spacing-md) var(--ig-spacing-sm);
+  }
+}
+
+/* ============================================
+   ANIMASI & TRANSISI
+============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kepala-profil,
+.bagian-cerita,
+.tab-profil,
+.grid-postingan {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ============================================
+   LOADING STATE (untuk postingan)
+============================================ */
+.grid-postingan:empty::before {
+  content: 'Memuat postingan...';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  padding: var(--ig-spacing-xl);
+  color: var(--ig-tertiary);
+  font-size: 14px;
+}
+
+/* ============================================
+   UTILITY CLASSES
+============================================ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gradient {
+  background: var(--ig-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================
+   SCROLLBAR STYLING (untuk browser modern)
+============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ig-light);
+  border-radius: var(--ig-radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ig-tertiary);
+  border-radius: var(--ig-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ig-secondary);
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar Instagram -->
+    <nav class="ig-navbar">
+        <div class="pembungkus-nav">
+            <a href="#" class="logo-merek">Instagram</a>
+            
+            <input type="text" class="kotak-pencarian" placeholder="Cari">
+            
+            <div class="ikon-nav">
+                <a href="#"><i class="fas fa-home"></i></a>
+                <a href="#"><i class="fas fa-paper-plane"></i></a>
+                <a href="#"><i class="fas fa-plus-square"></i></a>
+                <a href="#"><i class="fas fa-compass"></i></a>
+                <a href="#"><i class="fas fa-heart"></i></a>
+                <a href="#" id="ikon-profil"><i class="fas fa-user-circle"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Profil Utama -->
+    <main class="wadah-profil">
+        <!-- Bagian Kepala Profil -->
+        <section class="kepala-profil">
+            <div class="wadah-avatar-profil">
+                <div class="avatar-profil">
+                    <img src="logo.png" alt="Foto Profil">
+                </div>
+            </div>
+            
+            <div class="info-profil">
+                <div class="baris-nama-pengguna">
+                    <h1 class="nama-pengguna">Bydifia</h1>
+                    <button class="tombol-profil utama" id="tombolIkuti">Ikuti</button>
+                    <button class="tombol-profil" id="tombolPesan">Pesan</button>
+                    <button class="tombol-profil" id="tombolLainnya"><i class="fas fa-chevron-down"></i></button>
+                </div>
+                
+                <div class="statistik-profil">
+                    <div class="item-statistik">
+                        <span class="angka-statistik">245</span> postingan
+                    </div>
+                    <div class="item-statistik">
+                        <span class="angka-statistik">15.8k</span> pengikut
+                    </div>
+                    <div class="item-statistik">
+                        <span class="angka-statistik">892</span> mengikuti
+                    </div>
+                </div>
+                
+                <div class="bio-profil">
+                    <h1>Diah Fitrianingsih</h1>
+                    <p>Profesional Make up Artist.</p>
+                    <p>📍 Demak,Semarang</p>
+                    <p>🔗 <a href="https://websitemu.com" target="_blank">pricelist</a></p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bagian Cerita/Highlights -->
+        <section class="bagian-cerita">
+            <div class="judul-cerita">
+                <h2>Cerita</h2>
+                <a href="#">Lihat Semua</a>
+            </div>
+            
+            <div class="wadah-cerita">
+                <div class="item-cerita">
+                    <div class="avatar-cerita">
+                        <img src="cikatri.jpg" alt="Cerita 1">
+                    </div>
+                    <div class="nama-cerita">Cikatri</div>
+                </div>
+                
+                <div class="item-cerita">
+                    <div class="avatar-cerita">
+                        <img src="galm.jpg" alt="Cerita 2">
+                    </div>
+                    <div class="nama-cerita">Graduation</div>
+                </div>
+                
+                <div class="item-cerita">
+                    <div class="avatar-cerita">
+                        <img src="soft.jpg" alt="Cerita 3">
+                    </div>
+                    <div class="nama-cerita">Daily</div>
+                </div>
+                
+                <div class="item-cerita">
+                    <div class="avatar-cerita">
+                        <img src="creasi.jpeg" alt="Cerita 4">
+                    </div>
+                    <div class="nama-cerita">Creasi</div>
+                </div>
+
+                <div class="item-cerita">
+                    <div class="avatar-cerita">
+                        <img src="pink.jpeg" alt="Cerita 5">
+                    </div>
+                    <div class="nama-cerita">pink</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tab Profil -->
+        <nav class="tab-profil">
+            <a href="#" class="tab aktif" id="tabPostingan">
+                <i class="fas fa-table-cells-large"></i> POSTINGAN
+            </a>
+            <a href="#" class="tab" id="tabReels">
+                <i class="fas fa-film"></i> REELS
+            </a>
+            <a href="#" class="tab" id="tabDisimpan">
+                <i class="fas fa-bookmark"></i> DISIMPAN
+            </a>
+            <a href="#" class="tab" id="tabDitandai">
+                <i class="fas fa-user-tag"></i> DITANDAI
+            </a>
+        </nav>
+        
+        <!-- Grid Postingan -->
+        <div class="grid-postingan" id="gridPostingan">
+            <!-- Item postingan akan dibuat oleh JavaScript -->
+        </div>
+        
+        <!-- Informasi Kontak untuk Mobile -->
+        <div class="info-kontak-mobile">
+            <h3>Informasi Kontak</h3>
+            <p>Email: email@contoh.com</p>
+            <p>Telepon: +62 812-3456-7890</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
