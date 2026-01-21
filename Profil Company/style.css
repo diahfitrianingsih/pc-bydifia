@@ -1,0 +1,1032 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-pink: #e75480; /* Pink utama */
+    --soft-pink: #ebaed3; /* Pink lembut */
+    --gold: #d4af37; /* Emas */
+    --deep-purple: #b656a1; /* Ungu gelap */
+    --light-purple: #b19cd9; /* Ungu muda */
+    --cream: #fdf6f9; /* Krim */
+    --light-cream: #fff9fc; /* Krim lebih terang */
+    --dark-text: #333;
+    --medium-text: #422525;
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+    --border-radius: 16px;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    color: var(--dark-text);
+    background: linear-gradient(135deg, #fffbfd 0%, #f9f0ff 50%, #f5e6ff 100%);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background pattern yang sangat subtle */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(231, 84, 128, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(90, 61, 143, 0.03) 0%, transparent 20%);
+    z-index: -1;
+}
+
+/* Typography */
+h1, h2, h3, h4, .logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--deep-purple);
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--medium-text);
+    line-height: 1.8;
+}
+
+/* Header Styles */
+.header {
+    background: linear-gradient(135deg, var(--deep-purple) 0%, #7b5fb8 100%);
+    color: white;
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+    background-size: cover;
+    pointer-events: none;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+    position: relative;
+    display: inline-block;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    border-radius: 2px;
+}
+
+.slogan {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Navigation Styles */
+.nav {
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.nav li {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+    max-width: 200px;
+}
+
+.nav a {
+    display: block;
+    padding: 1.2rem 1.5rem;
+    color: var(--deep-purple);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    position: relative;
+    text-transform: uppercase;
+}
+
+.nav a:hover {
+    color: var(--primary-pink);
+    background-color: rgba(231, 84, 128, 0.05);
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-pink), var(--gold));
+    transition: var(--transition);
+    border-radius: 2px 2px 0 0;
+}
+
+.nav a:hover::after {
+    width: 80%;
+}
+
+/* Main Content Sections - REVISI LAYOUT */
+.main-conten {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+/* Layout untuk bagian Home (Introduction) */
+#home .content {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+#home article {
+    flex: 1;
+    min-width: 0; /* Penting untuk mencegah overflow */
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+#home article::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-pink), var(--soft-pink));
+}
+
+#home article h1 {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--deep-purple);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+#home article h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-pink), var(--gold));
+    border-radius: 2px;
+}
+
+#home .article-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.8rem;
+    color: var(--medium-text);
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+}
+
+#home .article-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    background-color: rgba(231, 84, 128, 0.1);
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+#home .article-meta span:hover {
+    transform: translateY(-2px);
+    background-color: rgba(231, 84, 128, 0.15);
+}
+
+#home .article-meta i {
+    color: var(--primary-pink);
+}
+
+#home article p {
+    margin-bottom: 1.5rem;
+    color: var(--medium-text);
+    line-height: 1.8;
+}
+
+#home .highlight-text {
+    background: linear-gradient(135deg, rgba(243, 28, 93, 0.08), rgba(255, 183, 228, 0.08));
+    border-left: 4px solid var(--gold);
+    padding: 1.8rem;
+    margin: 2.2rem 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    font-weight: 600;
+    color: var(--deep-purple);
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+#home .highlight-text i {
+    color: var(--gold);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Sidebar untuk Home - Profile Card */
+#home .sidebar {
+    flex: 0 0 350px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    text-align: center;
+    position: sticky;
+    top: 100px;
+    border-top: 5px solid var(--primary-pink);
+}
+
+.profile-img-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    border: 5px solid rgba(231, 84, 128, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transition: var(--transition);
+}
+
+.profile-img-container:hover .profile-img {
+    transform: scale(1.05);
+}
+
+#home .sidebar h2 {
+    color: var(--deep-purple);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+#home .sidebar p {
+    color: var(--primary-pink);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+#home .sidebar .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-pink);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--medium-text);
+}
+
+#home .sidebar .contact-mini {
+    margin-top: 1.5rem;
+}
+
+#home .sidebar .contact-mini a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: linear-gradient(135deg, var(--primary-pink), #9b3255);
+    color: white;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(231, 84, 128, 0.3);
+}
+
+#home .sidebar .contact-mini a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(231, 84, 128, 0.4);
+}
+
+/* Layout untuk bagian Portfolio */
+#portofolio .content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+#portofolio article {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#portofolio article h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--deep-purple);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 1rem;
+}
+
+#portofolio article h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-pink), var(--gold));
+    border-radius: 2px;
+}
+
+#portofolio article p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.portfolio-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.portfolio-img-container {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio-img-container::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent);
+    z-index: 1;
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    transition: var(--transition);
+}
+
+.portfolio-card:hover .portfolio-img {
+    transform: scale(1.08);
+}
+
+.portfolio-badge {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background: linear-gradient(135deg, var(--primary-pink), var(--soft-pink));
+    color: white;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 50px 0 0 50px;
+    z-index: 2;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--deep-purple);
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.portfolio-content h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--primary-pink);
+    border-radius: 2px;
+}
+
+.portfolio-content p {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: auto;
+}
+
+.tag {
+    background-color: rgba(231, 84, 128, 0.1);
+    color: var(--primary-pink);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Testimoni Section */
+#Testimoni {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+#Testimoni::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    border-radius: 2px;
+}
+
+#Testimoni h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--deep-purple);
+    position: relative;
+    display: inline-block;
+}
+
+#Testimoni h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-pink), var(--gold));
+    border-radius: 2px;
+}
+
+.testimoni-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.testimoni-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    text-align: left;
+}
+
+.testimoni-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.testimoni-item::before {
+    content: "❝";
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 3.5rem;
+    color: var(--primary-pink);
+    opacity: 0.15;
+    font-family: serif;
+    line-height: 1;
+}
+
+.testimoni-item p {
+    font-style: italic;
+    color: var(--medium-text);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+.testimoni-item h3 {
+    color: var(--deep-purple);
+    font-weight: 600;
+    position: relative;
+    padding-top: 1.5rem;
+}
+
+.testimoni-item h3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+}
+
+.testimoni-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.testimoni-controls button {
+    background: linear-gradient(135deg, var(--primary-pink), #d44d7a);
+    color: white;
+    border: none;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(231, 84, 128, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.testimoni-controls button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(231, 84, 128, 0.4);
+}
+
+/* Booking Section */
+.booking-cta {
+    max-width: 800px;
+    margin: 5rem auto;
+    padding: 4rem;
+    background: linear-gradient(135deg, var(--deep-purple), #7b5fb8);
+    color: white;
+    text-align: center;
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 40px rgba(90, 61, 143, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.booking-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+    background-size: cover;
+    pointer-events: none;
+}
+
+.booking-cta h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.booking-cta h3 i {
+    color: var(--gold);
+}
+
+.booking-cta p {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    opacity: 1.2;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #25D366, #1DA851);
+    color: white;
+    padding: 1.3rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-btn i {
+    font-size: 1.5rem;
+}
+
+/* Contact Section */
+.contact-section {
+    max-width: 800px;
+    margin: 5rem auto;
+    padding: 4rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--deep-purple);
+    position: relative;
+    display: inline-block;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-pink), var(--gold));
+    border-radius: 2px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.contact-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-pink), var(--soft-pink));
+    color: white;
+    border-radius: 50%;
+    font-size: 2.2rem;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 8px 20px rgba(163, 59, 91, 0.3);
+}
+
+.contact-item a:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 25px rgba(231, 84, 128, 0.5);
+}
+
+.contact-item span {
+    color: var(--deep-purple);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--deep-purple), #4a3d6b);
+    color: white;
+    text-align: center;
+    padding: 3rem;
+    margin-top: 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-pink), var(--gold));
+}
+
+.footer p {
+    font-size: 1.7rem;
+    letter-spacing: 2px;
+    opacity: 1.1;
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 1100px) {
+    #home .content {
+        flex-direction: column;
+    }
+    
+    #home .sidebar {
+        flex: none;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        position: static;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 3rem 1.5rem 2rem;
+    }
+    
+    .logo {
+        font-size: 2.5rem;
+    }
+    
+    .slogan {
+        font-size: 1.1rem;
+    }
+    
+    .nav ul {
+        flex-wrap: wrap;
+    }
+    
+    .nav li {
+        flex: 1 0 50%;
+        max-width: 50%;
+    }
+    
+    .nav a {
+        padding: 1rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .main-conten {
+        padding: 0 1.5rem;
+        margin: 2.5rem auto;
+    }
+    
+    #home article, #portofolio article {
+        padding: 2rem;
+    }
+    
+    #home article h1, #portofolio article h1 {
+        font-size: 2rem;
+    }
+    
+    #home .article-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .testimoni-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .booking-cta, .contact-section {
+        padding: 3rem 1.5rem;
+        margin: 4rem 1.5rem;
+    }
+    
+    .booking-cta h3 {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .whatsapp-btn {
+        padding: 1.1rem 2.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .slogan {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .nav li {
+        flex: 1 0 100%;
+        max-width: 100%;
+    }
+    
+    .nav a {
+        padding: 0.9rem;
+    }
+    
+    #home article h1, #portofolio article h1 {
+        font-size: 1.8rem;
+    }
+    
+    .highlight-text {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .testimoni-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .testimoni-controls button {
+        width: 200px;
+        justify-content: center;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content article, .testimoni-item, .portfolio-card, .booking-cta, .contact-section {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+#home article { animation-delay: 0.1s; }
+#home .sidebar { animation-delay: 0.2s; }
+.portfolio-card:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-card:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-card:nth-child(3) { animation-delay: 0.3s; }
+.testimoni-item:nth-child(1) { animation-delay: 0.1s; }
+.testimoni-item:nth-child(2) { animation-delay: 0.2s; }
+.testimoni-item:nth-child(3) { animation-delay: 0.3s; }
+.booking-cta { animation-delay: 0.2s; }
+.contact-section { animation-delay: 0.3s; }
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--primary-pink), var(--soft-pink));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #d44d7a, var(--soft-pink));
+}

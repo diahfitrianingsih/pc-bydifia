@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimoni Para Model</title>
+    <style>
+        .testimoni-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            width: 80%;
+            margin:auto;
+        }
+        .testimoni-item{
+            margin: 20px;
+            width: 300px;
+            text-align: center;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .testimoni-item.active{
+            opacity: 1;
+        }
+        #prev-btn, #next-btn{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: color #333;
+            color:#fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #prev-btn{
+            left: 0;
+        }
+        #next-btn{
+            right: 0;
+        }
+    </style>
+    <script>
+        const items = document.querySelectorAll('.testimoni-item');
+        let i = 0;
+
+        document.getElemenById('next-btn').onlock=()=>change(1);
+        document.getElemenById('prev-btn').onlock=()=>change(-1);
+
+        function change(n) {
+            if (items.length === 0) return;
+            items[i].classList.remove('active');
+            i = (i + n + items.length) % items.length;
+            items[i].classList.add('active')
+        }
+    </script>
+</head>
+<body>
+    <!-- header -->
+     <section id="Testimoni">
+        <h2>Testimoni Para Model</h2>
+        <div class="testimoni-container">
+            <div class="testimoni-item">
+            <p>Make up by-dyfia ini walaupun pemula tapi tetap oke.Menurut saya sendiri
+                make up disini sangat rekomend.
+            </p>
+            <h3>Niswa</h3>
+            </div>
+            <div class="testimoni-item">
+            <p>Untuk MUA nya juga sangat ramah tetap memperhatikan kenyaman pelanggan.
+            </p>
+            <h3>Lia</h3>
+            </div>
+            <div class="testimoni-item">
+            <p>Jangan ragu untuk booking disini karena disini juga bisa menerima pendapat 
+                costumer selain itu kita juga akan mendapatkan saran untuk make up yang cocok dengan muka kita.
+            </p>
+            <h3>Niswa</h3>
+            </div>
+        </div>
+        <button id="prev-btn">prev</button>
+        <button id="next-btn">Next</button>
+     </section>
+     
+
+</body>
+</html>
